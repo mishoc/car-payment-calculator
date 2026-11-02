@@ -1,0 +1,101 @@
+{
+  "code": "IL",
+  "name": "Illinois",
+  "status": "draft",
+  "verifiedOn": null,
+  "vehicleTax": {
+    "type": {
+      "value": "sales_use",
+      "sources": ["idor-rates", "idor-st556"],
+      "note": "Dealer sales are taxed under the Retailers' Occupation Tax and reported on Form ST-556."
+    },
+    "stateRateNew": {
+      "value": 0.0625,
+      "sources": ["idor-rates"],
+      "note": "6.25% state rate on general merchandise, which includes items titled or registered by the state."
+    },
+    "stateRateUsed": {
+      "value": 0.0625,
+      "sources": ["idor-rates"]
+    },
+    "localAllowed": {
+      "value": true,
+      "sources": ["idor-st556"],
+      "note": "Dealers apply the rate printed on their return for their location; Chicago adds a 1.25% Home Rule Use Tax."
+    },
+    "min": null,
+    "max": null
+  },
+  "tradeInCredit": {
+    "rule": {
+      "value": "full",
+      "sources": ["idor-st556"],
+      "note": "The qualified trade-in value is subtracted from the selling price (ST-556 Section 6, Lines 2-3)."
+    },
+    "cap": {
+      "value": null,
+      "sources": ["idor-st556"],
+      "note": "The $10,000 trade-in limit applied only to sales from 2020-01-01 to 2021-12-31."
+    }
+  },
+  "rebateTreatment": {
+    "value": "tax_full_price",
+    "sources": ["idor-st556"],
+    "note": "\"Do not subtract the value of any rebate made directly to the customer.\""
+  },
+  "docFee": {
+    "cap": null,
+    "capYear": null,
+    "typical": null,
+    "taxable": {
+      "value": true,
+      "sources": ["idor-st556"],
+      "note": "Documentary fees are listed among the costs included in the taxable selling price (ST-556 Line 1)."
+    }
+  },
+  "addOnTaxable": {
+    "serviceContract": null,
+    "gap": null,
+    "accessories": {
+      "value": true,
+      "sources": ["idor-st556"],
+      "note": "Accessories are listed in the taxable selling price (ST-556 Line 1)."
+    }
+  },
+  "fees": [],
+  "annualOwnershipTax": null,
+  "notes": [
+    {
+      "text": "Vehicles bought from a Chicago dealer also owe the 1.25% Chicago Home Rule Use Tax. Include it in the combined rate.",
+      "sources": ["idor-st556"]
+    },
+    {
+      "text": "The documentary fee cap was $300 from January 1, 2020, adjusted each year by the Consumer Price Index. The current-year cap is not yet sourced.",
+      "sources": ["il-ag-new-vehicle"]
+    }
+  ],
+  "workedExamples": [],
+  "sources": [
+    {
+      "id": "idor-rates",
+      "url": "https://tax.illinois.gov/questionsandanswers/answer.139.html",
+      "title": "What are the retailers' occupation and use tax rates in Illinois?",
+      "checkedOn": "2026-11-02",
+      "publisher": "Illinois Department of Revenue"
+    },
+    {
+      "id": "idor-st556",
+      "url": "https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/sales/documents/vehicleusetax/st-556-instr.pdf",
+      "title": "ST-556 Instructions (R-12/24), Sales Tax Transaction Return",
+      "checkedOn": "2026-11-02",
+      "publisher": "Illinois Department of Revenue"
+    },
+    {
+      "id": "il-ag-new-vehicle",
+      "url": "https://illinoisattorneygeneral.gov/Page-Attachments/BuyingaNewVehicle.pdf",
+      "title": "Buying a New Vehicle",
+      "checkedOn": "2026-11-02",
+      "publisher": "Illinois Attorney General"
+    }
+  ]
+}

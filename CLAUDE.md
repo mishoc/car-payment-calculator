@@ -19,6 +19,19 @@ accounts, no applicant data.
    `draft` shows that label on every result. Only a person's review flips `status` to
    `verified`.
 
+Every state is shown, draft or verified (decision 2026-11-02). Draft states carry the
+"unverified estimate" label; no state is hidden for being unreviewed.
+
+## State data format
+
+- Schema: `src/data/schema.ts`. Checks beyond the schema: `src/data/validate.ts`.
+- Each rule is `{ "value": ..., "sources": ["<source id>"], "note": "..." }`, or `null` when no
+  primary source has been found yet. A sourced `"value": null` means "the state sets none"
+  (for example no doc fee cap); a bare `null` means "unknown".
+- Source URLs must be https on a `.gov` or `.us` host. Every source must be referenced.
+- CI fails when any source's `checkedOn` (or a verified state's `verifiedOn`) is more than
+  12 months old.
+
 ## Math rules
 
 - Keep full precision through every calculation. Round to cents only for display, except where
@@ -32,7 +45,8 @@ accounts, no applicant data.
 
 - `src/engine/` pure calculation functions (loan math, tax and fee engine). No React, no I/O.
 - `src/` React UI.
-- `data/states/` one JSON file per state.
+- `src/data/` state record schema, validator, loader.
+- `data/states/` one JSON file per state, named by postal code (`IL.json`).
 
 ## Commands
 
