@@ -1,3 +1,5 @@
+import { StateRecordSchema, type StateRecord } from './schema'
+
 /** Loads every state record from data/states/*.json at build time. */
 const modules = import.meta.glob<unknown>('../../data/states/*.json', {
   eager: true,
@@ -19,3 +21,8 @@ export const stateFiles: StateFile[] = Object.entries(modules)
     json,
   }))
   .sort((a, b) => a.fileCode.localeCompare(b.fileCode))
+
+/** Parsed records for the app, sorted by state name. CI validates the files in full. */
+export const stateRecords: StateRecord[] = stateFiles
+  .map((f) => StateRecordSchema.parse(f.json))
+  .sort((a, b) => a.name.localeCompare(b.name))
